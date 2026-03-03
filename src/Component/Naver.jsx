@@ -1,15 +1,22 @@
-import React from 'react';
+
 import { NavLink } from 'react-router';
-import user from '../assets/user.png'
-import Marquee from 'react-fast-marquee';
+import usersP from '../assets/user.png'
+import { use } from 'react';
+import { UsersContext } from './context/CreateContext';
+
 const Naver = () => {
+        
+    const {users , userSingOut} = use(UsersContext)
+    const signOutHandel = ()=>{
+      userSingOut().then(()=>{
+        console.log('sign Out success full done')
+      })
+    }
     return (
         <div className=''>
             <div className='flex justify-between mt-10'>
                 <div>
-                    {/* <Marquee pauseOnHover={true} speed={60}>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, hic?</h1>
-                    </Marquee> */}
+                   <p>{users?.email}</p>
                 </div>
 
                 <div className=' space-x-7'>
@@ -19,8 +26,12 @@ const Naver = () => {
                 </div>
 
                 <div className='flex gap-4'>
-                    <img src={user} alt="" />
-                    <button className='btn bg-primary text-base-200'>Login</button>
+                    <img src={usersP} alt="" />
+                    {
+                        users?  <NavLink to={'/auth/registration'} onClick={signOutHandel} className='btn bg-primary text-base-200'>SignOut</NavLink> :
+                        <NavLink to={'/auth/registration'} className='btn bg-primary text-base-200'>Login</NavLink>
+                       
+                    }
                 </div>
             </div>
         </div>

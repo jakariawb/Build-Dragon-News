@@ -2,9 +2,11 @@
 
 
 
-import { Suspense } from 'react';
+import { Suspense,} from 'react';
 import CaterogyPage from '../caterogy/CaterogyPage';
-const LeftAside = () => {   
+
+const LeftAside = () => { 
+     
     return (
         <div className=''>
             <Suspense fallback={<span className="loading loading-dots loading-xl"></span>}>
