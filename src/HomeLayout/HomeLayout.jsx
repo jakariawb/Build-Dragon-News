@@ -1,46 +1,53 @@
-
-
-import React from 'react';
-import { Outlet } from 'react-router';
+import React, { use } from 'react';
+import { Outlet, useNavigation } from 'react-router';
 import Header from '../Component/Header';
 import News from '../Component/News';
 import Naver from '../Component/Naver';
 import RightAside from '../Component/Pages/RightAside';
 import LeftAside from '../Component/Pages/LeftAside';
-
-
-
-
+import Loading from '../Component/Pages/Loading';
+import { UsersContext } from '../Component/context/CreateContext';
 
 const HomeLayout = () => {
+    const {state } = useNavigation()
+    const {users} = use(UsersContext)
     return (
+
         <div>
             <header>
-               <Header></Header>
-                <section className=' w-11/12 mx-auto'>
-                    <News></News>
+                <div className=''>
+                    <Header />
+                </div>
+
+                <section className='w-11/12 mx-auto'>
+                    <News />
                 </section>
-                <nav className=' w-11/12 mx-auto'>
-                    <Naver></Naver>
+
+                <nav className='w-11/12 mx-auto'>
+                    <Naver />
                 </nav>
             </header>
 
-            <div>
-                <main className=' w-11/12 mx-auto grid grid-cols-12 mt-5 gap-10'>
+            <main className='w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mt-5'>
 
-                    <aside className='right-section col-span-3 h-fit sticky top-0'>
-                            <LeftAside></LeftAside>
-                    </aside>
+                {/* Left Aside */}
+                <aside className='lg:col-span-3 md:col-span-1 sticky top-0 h-fit'>
+                    <LeftAside />
+                </aside>
 
-                    <section className='main-section col-span-6'>
-                        <Outlet></Outlet>
-                    </section>
+                {/* Main Content */}
+                <section className={`${users ? 'lg:col-span-9' : 'lg:col-span-6'} md:col-span-2`}>
+                  {state == 'loading' ? <Loading></Loading> :  <Outlet />} 
+                </section>
 
-                    <aside className='left-section col-span-3 sticky top-0 h-fit'>
-                        <RightAside></RightAside>
-                    </aside>
-                </main>
-            </div>
+                {/* Right Aside */}
+                {
+                    !users && <aside className='lg:col-span-3 md:col-span-2 sticky top-0 h-fit'>
+                    <RightAside />
+                </aside> 
+                }
+
+            </main>
         </div>
     );
 };

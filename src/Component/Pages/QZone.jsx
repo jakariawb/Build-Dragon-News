@@ -11,7 +11,7 @@ const QZone = () => {
        
        <div>
         <h1 className='text-2xl font-extrabold mb-3'>Q Zoon</h1>
-         <div className='bg-gray-300 justify-center grid w-80'>
+         <div className='bg-gray-300 md:justify-center grid  '>
             
             <img src={swimming} alt="" />
             <img src={class1} alt="" />

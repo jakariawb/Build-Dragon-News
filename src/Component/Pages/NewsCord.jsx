@@ -3,7 +3,7 @@
 
 import React from "react";
 import { FaEye, FaStar, FaRegBookmark, FaShareAlt } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, } from "react-router";
 
 const NewsCard = ({ news }) => {
   const {
@@ -15,6 +15,9 @@ const NewsCard = ({ news }) => {
     rating,
     total_view,
   } = news;
+
+ 
+
 
   const formattedDate = new Date(author.published_date).toLocaleDateString(
     "en-GB",
@@ -34,7 +37,7 @@ const NewsCard = ({ news }) => {
           <img
             src={author.img}
             alt={author.name}
-            className="w-10 h-10 rounded-full"
+            className="w-10 h-10 rounded-full" 
           />
           <div>
             <h3 className="font-semibold">{author.name}</h3>
@@ -43,7 +46,10 @@ const NewsCard = ({ news }) => {
         </div>
 
         <div className="flex gap-3 text-gray-500">
-          <FaRegBookmark className="cursor-pointer" />
+         
+          <Link to={``}>
+           <FaRegBookmark className="cursor-pointer" />
+          </Link>
           <FaShareAlt className="cursor-pointer" />
         </div>
       </div>

@@ -22,7 +22,6 @@ const CategoryNews = () => {
         }
         else {
             const newNews = newsData.filter(news => news.category_id == id)
-            console.log(newNews)
 
             setCategoryNews(newNews)
         }
